@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         when (requestCode) {
             userAgreePermissionCode -> {
                 //  有 I 個權限，一個一個問，有一個不同意就不給他開啟
-                for( i in 0..grantResults.size){
+                for( i in 0..(grantResults.size-1) ){
                     if ((grantResults.isNotEmpty() && grantResults[i] == PackageManager.PERMISSION_GRANTED))
                         Log.i("Status:", "Agree a permission")
                     else
