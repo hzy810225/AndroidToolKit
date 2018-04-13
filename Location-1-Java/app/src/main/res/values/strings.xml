@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Location</string>
+    <string name="Title">這是一個手機定位的範例</string>
+    <string name="Longitude">經度(Longitude)</string>
+    <string name="Latitude">緯度(Latitude)</string>
+    <string name="Reset">重置(Reset)</string>
+    <string name="Close">關閉(Close)</string>
+    <string name="Locate">定位(Locate)</string>
+</resources>
