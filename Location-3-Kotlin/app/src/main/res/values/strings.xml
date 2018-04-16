@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Location</string>
+    <string name="Title">這是一個獲取目前位置的範例。</string>
+    <string name="Locate">定位(Locate)</string>
+    <string name="Close">離開(Close)</string>
+    <string name="Longitude">經度(Longitude)</string>
+    <string name="Latitude">緯度(Latitude)</string>
+</resources>
