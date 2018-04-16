@@ -23,3 +23,6 @@ Here are some android examples.
 
 	掃描 QR-code 以及切換 Activity 的細節。
 
++ PhoneCall-1-Kotlin:
+
+	輸入電話號碼，按下 Call 就撥電話。

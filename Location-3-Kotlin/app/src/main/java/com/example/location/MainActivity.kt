@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
             //  定位參數
             val userLocationRequest = LocationRequest().apply {
-                interval = 1000*60*60*240  //  只想要定位一次 => 所以更新頻率足夠大就可以 => 很少人 APP 可以用 10 天的 => 但會不會很耗電就不知道了
+                interval = 1000*60*60*240  //  只想要定位一次 => 所以更新頻率足夠大就可以 => 例如很少人 APP 可以用 10 天的 => 但會不會很耗電就不知道了 => 還有網路的流量問題
                 fastestInterval = 5000
                 priority = LocationRequest.PRIORITY_HIGH_ACCURACY
             }
