@@ -25,11 +25,11 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks, G
     //  定位服務的物件
     private lateinit var userLocationClient: FusedLocationProviderClient
 
-    //  用 Call back function 吐回更新的值
+    //  更新的值會在這個物件出現
     private lateinit var locationCallback: LocationCallback
 
-    //  可不可以首次定位
-    private var canInitialLocate = true
+    //  可不可以得到上一次定位
+    private var canGetLastLocation = true
     //  可不可以開啟定位更新
     private var canStartUpdate = false
     //  可不可以停止定位更新
@@ -50,15 +50,15 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks, G
 
         //  首次定位按鈕 => 只能開啟定位更新
         findViewById<Button>(R.id.InitialLocate).setOnClickListener{
-            if(canInitialLocate){
+            if(canGetLastLocation){
                 userLocationClient = LocationServices.getFusedLocationProviderClient(this)
                 userLocationClient.lastLocation
                         .addOnSuccessListener { location : Location? ->
-                            //  首次定位的經緯度在這裡
+                            //  上一次定位的經緯度在這裡 => 如果沒紀錄 => 可能為空
                             findViewById<TextView>(R.id.Longitude).text = location?.longitude.toString()
                             findViewById<TextView>(R.id.Latitude).text = location?.latitude.toString()
                         }
-                canInitialLocate = false
+                canGetLastLocation = false
                 canStartUpdate = true
                 canStopUpdate = false
             }else{
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks, G
                 userLocationClient.requestLocationUpdates(userLocationRequest,locationCallback,null)
 
                 //  只能夠停止更新
-                canInitialLocate = false
+                canGetLastLocation = false
                 canStartUpdate = false
                 canStopUpdate = true
             }else{
@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks, G
                 //  只能夠開啟更新
                 canStartUpdate = true
                 canStopUpdate = false
-                canInitialLocate = false
+                canGetLastLocation = false
             }else{
                 Log.i("Message:","you already stop update!!")
             }
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks, G
             //  只能首次定位
             canStartUpdate = false
             canStopUpdate = false
-            canInitialLocate = true
+            canGetLastLocation = true
         }
 
         //  離開按鈕
