@@ -5,7 +5,7 @@ Here are some android examples.
 
 	按下按鈕，呈現使用者上次定位的座標，如果使用者手機沒有任何紀錄，可能為空。
 
-+ Location-1-Java: 同上。
++ Location-1-Java: 同上(還沒改)。
 
 + Location-2-Kotlin: 
 

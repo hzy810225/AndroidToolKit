@@ -7,12 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.OnSuccessListener
 
 
 
@@ -30,14 +27,20 @@ class MainActivity : AppCompatActivity() {
         val currentPermission = ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)
         if( currentPermission!=PackageManager.PERMISSION_GRANTED ) ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), userAgreePermissionCode)
 
-        //  定位按鈕執行
+        //  獲取上一次定位座標按鈕
         findViewById<Button>(R.id.Locate).setOnClickListener{
             userLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
             userLocationProviderClient.lastLocation.addOnSuccessListener { location : Location? ->
-                val userLongitude = location?.longitude
-                val userLatitude = location?.latitude
-                findViewById<TextView>(R.id.Longitude).text = userLongitude.toString()
-                findViewById<TextView>(R.id.Latitude).text = userLatitude.toString()
+
+                //  獲取上一次定位的座標 => 但如果沒紀錄可能為空
+                if( (location?.longitude!=null) ){
+                    val userLongitude = location.longitude
+                    findViewById<TextView>(R.id.Longitude).text = userLongitude.toString()
+                }
+                if(location?.latitude!=null){
+                    val userLatitude = location.latitude
+                    findViewById<TextView>(R.id.Latitude).text = userLatitude.toString()
+                }
             }
         }
 
